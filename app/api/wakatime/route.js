@@ -38,7 +38,7 @@ export async function GET(request) {
         return NextResponse.json({ error: 'Date parameter is required' }, { status: 400 });
     }
 
-    const apiKey = process.env.WAKATIME_API_KEY; // Securely access the API key
+    const apiKey = process.env.WAKATIME_API_KEY;
     if (!apiKey) {
         return NextResponse.json({ error: 'API key not configured' }, { status: 500 });
     }
