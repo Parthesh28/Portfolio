@@ -1,0 +1,13 @@
+
+export default function Footer() {
+  return (
+    <footer className="h-[150px] sm:h-auto bg-zinc-100 bg-opacity-20 dark:bg-zinc-700 dark:bg-opacity-20 shadow-lg shadow-black/[0.1] dark:shadow-white/[0.03] backdrop-blur-xl py-8 mt-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center space-y-4">
+          
+          <p className="text-sm text-center">&copy; {new Date().getFullYear()} | Designed by Parthesh | Made with Pain ㅠ﹏ㅠ</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
