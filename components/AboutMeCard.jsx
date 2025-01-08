@@ -21,28 +21,28 @@ export default function AboutMeCard() {
         <Card className="bg-zinc-100 dark:bg-zinc-900 h-full">
             <CardContent className="pt-6 flex flex-col justify-between h-full">
                 <div className="space-y-4">
-                    <p className="text-base">
-                        Hey there! I am <span className="font-semibold">Parthesh</span>, a {age}-y/o <span className="font-bold underline decoration-primary/30 underline-offset-4">developer from Mumbai, India</span> with a passion for Blockchain and Android.
+                    <p className="text-base pb-2">
+                        Hey there! I am <span className="font-semibold">Parthesh</span>, a {age}-y/o <span className="font-bold underline decoration-primary/30 underline-offset-4">developer from India</span> with a love for Blockchain and Android.
                     </p>
                     <Separator />
-                    <p className="text-base pt-3">
-                        My way to go in development is the <span className="font-semibold underline decoration-primary/30 underline-offset-4">JavaScript ecosystem</span>, with a focus on:
+                    <p className="text-base pt-1">
+                        My way to go in development is the <span className="font-semibold underline decoration-primary/30 underline-offset-4">JavaScript ecosystem</span>, with favourites as:
                     </p>
-                    <ul className="list-disc list-inside">
+                    <ul className="list-disc list-inside pb-3">
                         <li>
-                            <span className="font-bold">React-Native</span> for building on Android
+                            <span className="font-bold">React Native</span> for Android
                         </li>
                         <li>
-                            <span className="font-bold">Node.js</span> for Backend development
+                            <span className="font-bold">Next.js</span> for Web Apps 
                         </li>
                         <li>
-                            <span className="font-bold">Next.js</span> for full-stack web applications
+                            <span className="font-bold">Node.js</span> for Backend
                         </li>
                     </ul>
                 </div>
                 <Separator />
-                <p className="text-base mb-3 mt-4">
-                    Learning and implementing <span className="font-semibold underline decoration-primary/30 underline-offset-4">new technologies</span> is the way to go!! AI will not take my job.
+                <p className="italic text-base mb-3 mt-4">
+                    I do not fear AI <span className="font-semibold underline decoration-primary/30 underline-offset-4">as it cannot take my job</span>, not because I am good, it is because I never had one!!
                 </p>
             </CardContent>
         </Card>

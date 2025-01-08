@@ -5,7 +5,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center space-y-4">
           
-          <p className="text-sm text-center">&copy; {new Date().getFullYear()} | Designed by Parthesh | Made with Pain ㅠ﹏ㅠ</p>
+          <p className="text-sm text-center"> Designed by <a className="font-medium underline" href="#home">Parthesh</a> | Made With Pain ㅠ﹏ㅠ</p>
         </div>
       </div>
     </footer>

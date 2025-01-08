@@ -11,7 +11,7 @@ import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '../app
 import WobbleCard from '../components/WobbleCard'
 import useSectionInView from '../hooks/useSectionInView';
 
-export default function () {
+export default function Contact() {
   const { ref } = useSectionInView("Connect", 0.3);
   const email = 'partheshpurohit23@gmail.com';
 
@@ -73,12 +73,12 @@ export default function () {
                   >
                     <a
                       href={`mailto:${email}`}
-                      className="group relative flex items-center justify-center w-full p-4 bg-zinc-300 dark:bg-zinc-800 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md"
+                      className="group relative flex flex-col sm:flex-row items-center justify-center w-full p-4 bg-zinc-300 dark:bg-zinc-800 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md gap-2"
                       aria-label="Send email"
                     >
                       <div className="absolute inset-0 bg-zinc-500 dark:bg-zinc-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                      <HiMail className="w-6 h-6 mr-3 text-zinc-600 dark:text-zinc-400 relative z-10" />
-                      <span className="text-zinc-600 dark:text-zinc-400 font-medium relative z-10">
+                      <HiMail className="w-6 h-6 text-zinc-600 dark:text-zinc-400 relative z-10" />
+                      <span className="text-zinc-600 underline underline-offset-2 dark:text-zinc-400 font-medium relative z-10 text-center break-all">
                         {email}
                       </span>
                     </a>
@@ -116,7 +116,7 @@ function SocialLink({ link }) {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 rounded-lg bg-zinc-300 dark:bg-zinc-800 hover:bg-zinc-400 dark:hover:bg-zinc-700 transition-colors duration-200"
+          className="p-3 rounded-full bg-zinc-300 dark:bg-zinc-800 hover:bg-zinc-400 dark:hover:bg-zinc-700 transition-colors duration-200"
           aria-label={link.label}
         >
           <link.icon className="w-6 h-6 text-zinc-600 dark:text-zinc-400" />
