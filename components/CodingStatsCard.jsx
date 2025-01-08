@@ -17,7 +17,7 @@ export default function CodingStatsCard({ data }) {
     return (
         <Card className="bg-zinc-100 dark:bg-zinc-900 h-full">
             <CardHeader>
-                <CardTitle className="text-2xl font-semibold">My Weekly Coding Stats</CardTitle>
+                <CardTitle className="text-2xl font-semibold">Activity</CardTitle>
                 <p className="text-sm text-muted-foreground flex items-center">
                     Status:
                     <span className="flex items-center ml-2">

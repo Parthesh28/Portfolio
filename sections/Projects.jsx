@@ -5,12 +5,13 @@ import { Card, CardContent } from "../app/components/ui/card"
 import { Badge } from '../app/components/ui/badge'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../app/components/ui/carousel"
 import { Button } from "../app/components/ui/button"
-import { Code, Eye} from 'lucide-react'
+import { Code, Eye } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 const projects = [
   {
     title: 'BlockMart',
-    description: 'A e-commerce platform built on solidity and Ethereum blockchain.',
+    description: 'A e-commerce platform built on Ethereum blockchain.',
     image: '/assets/BlockMart.png',
     codebaseLink: 'https://github.com/Viraj2722/Polyzon',
     previewLink: 'https://polyzon.vercel.app',
@@ -31,19 +32,52 @@ const projects = [
     codebaseLink: '',
     previewLink: '',
     techstack: ['Next.js']
+  },
+  {
+    title: 'Portfolio',
+    description: 'A modern portfolio website that was made with pain',
+    image: '/assets/Portfolio.png',
+    codebaseLink: '',
+    previewLink: 'https://parthesh28.vercel.app',
+    techstack: ['Next.js']
   }
 ]
 
 export default function Projects() {
-  const {ref} = useSectionInView("Projects", 0.3);
+  const [api, setApi] = useState()
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCurrent(api.selectedScrollSnap())
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
+
+  const { ref } = useSectionInView("Projects", 0.3);
+
   return (
-    <section id="projects" ref={ref} className="py-16">
-      <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
+    <section id="projects" ref={ref} className="py-20">
+      <motion.h2
+        className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl text-center mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        Projects
+      </motion.h2>
       <Carousel
         opts={{
           align: "start",
           loop: true,
         }}
+        setApi={setApi}
         className="w-full max-w-5xl mx-auto"
       >
         <CarouselContent className="-ml-2 md:-ml-4">
@@ -133,6 +167,19 @@ export default function Projects() {
           <CarouselNext />
         </div>
       </Carousel>
+      <div className="flex justify-center gap-2 mt-4">
+        {projects.map((_, i) => (
+          <button
+            key={i}
+            className={`w-2 h-2 rounded-full transition-colors duration-200 ${i === current
+                ? 'bg-zinc-800 dark:bg-zinc-200'
+                : 'bg-zinc-300 dark:bg-zinc-700'
+              }`}
+            onClick={() => api?.scrollTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
     </section>
   );
 }

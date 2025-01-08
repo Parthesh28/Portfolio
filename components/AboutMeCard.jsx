@@ -22,21 +22,21 @@ export default function AboutMeCard() {
             <CardContent className="pt-6 flex flex-col justify-between h-full">
                 <div className="space-y-4">
                     <p className="text-base">
-                        Hey there! I am <span className="font-semibold">Parthesh</span>, a {age}-y/o <span className="font-bold underline decoration-primary/30 underline-offset-4">aspiring developer from Mumbai, India</span> with a passion for Blockchain and Android.
+                        Hey there! I am <span className="font-semibold">Parthesh</span>, a {age}-y/o <span className="font-bold underline decoration-primary/30 underline-offset-4">developer from Mumbai, India</span> with a passion for Blockchain and Android.
                     </p>
                     <Separator />
                     <p className="text-base pt-3">
-                        My expertise lies in the <span className="font-semibold underline decoration-primary/30 underline-offset-4">JavaScript ecosystem</span>, with a focus on:
+                        My way to go in development is the <span className="font-semibold underline decoration-primary/30 underline-offset-4">JavaScript ecosystem</span>, with a focus on:
                     </p>
                     <ul className="list-disc list-inside">
                         <li>
                             <span className="font-bold">React-Native</span> for building on Android
                         </li>
                         <li>
-                            <span className="font-bold">Node.js</span> for server-side development
+                            <span className="font-bold">Node.js</span> for Backend development
                         </li>
                         <li>
-                            <span className="font-bold">Next.js</span> for full-stack applications
+                            <span className="font-bold">Next.js</span> for full-stack web applications
                         </li>
                     </ul>
                 </div>

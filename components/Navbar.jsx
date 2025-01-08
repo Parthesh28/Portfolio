@@ -23,8 +23,8 @@ const navItems = [
     Icon: BriefcaseBusiness
   },
   {
-    name: "Contact",
-    hash: "#contact",
+    name: "Connect",
+    hash: "#connect",
     Icon: Link2
   },
 ]

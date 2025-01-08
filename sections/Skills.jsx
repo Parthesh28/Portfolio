@@ -66,16 +66,16 @@ export default function Skills() {
                     initial="hidden"
                     animate="visible"
                 >
-                    <MotionCard variants={itemVariants} className="bg-zinc-100 dark:bg-zinc-900 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <MotionCard variants={itemVariants} className="bg-zinc-100 dark:bg-zinc-900 overflow-hidden hover:shadow-xl transition-shadow duration-300">
                         <CardHeader>
-                            <CardTitle className="text-xl font-semibold flex items-center gap-2 text-primary">
+                            <CardTitle className="text-2xl font-semibold flex items-center gap-2 text-primary">
                                 <BookMarked className="h-6 w-6" />
                                 <span>Education</span>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="p-6">
+                        <CardContent>
                             <motion.div className="relative" variants={containerVariants}>
-                                <div className="absolute left-6 top-0 h-full w-0.5"></div>
+                                <div className="absolute left-6 h-full w-0.5 bg-primary/20"></div>
                                 {educationTimeline.map((item, index) => (
                                     <motion.div
                                         key={index}
@@ -86,17 +86,17 @@ export default function Skills() {
                                     >
                                         <div className="flex flex-col items-center mr-4 z-10">
                                             <motion.div
-                                                className="flex items-center justify-center w-12 h-12 bg-primary rounded-full"
+                                                className="flex items-center justify-center w-12 h-12 bg-secondary-foreground rounded-full"
                                                 whileHover={{ scale: 1.1 }}
                                                 transition={{ type: "spring", stiffness: 300 }}
                                             >
-                                                <item.icon className="w-6 h-6 text-primary-foreground" />
+                                                <item.icon className="w-6 h-6 text-secondary" />
                                             </motion.div>
                                         </div>
                                         <div>
                                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
                                             <p className="text-sm text-gray-500 dark:text-gray-400">{item.year}</p>
-                                            <p className="text-sm text-gray-600 dark:text-gray-300">{item.description}</p>
+                                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{item.description}</p>
                                         </div>
                                     </motion.div>
                                 ))}
