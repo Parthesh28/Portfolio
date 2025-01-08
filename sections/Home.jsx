@@ -72,7 +72,7 @@ export default function Home() {
                   key={i}
                   variants={letterVariants}
                   custom={i}
-                  className="text-5xl md:text-6xl font-bold text-zinc-900 dark:text-zinc-50 inline-block"
+                  className="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-zinc-50 inline-block"
                 >
                   {letter === " " ? "\u00A0" : letter}
                 </motion.span>
