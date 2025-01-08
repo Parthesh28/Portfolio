@@ -45,10 +45,6 @@ export default function () {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Avatar className="h-20 w-20 ring-4 ring-zinc-400 dark:ring-zinc-700">
-                      <AvatarImage src='/assets/Profile_Picture.jpg' alt="Parthesh Purohit" className="object-cover" />
-                      <AvatarFallback className="text-2xl">PP</AvatarFallback>
-                    </Avatar>
                   </motion.div>
                   <motion.h2
                     className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl text-center mb-12"
