@@ -13,9 +13,8 @@ const chartConfig = {
 }
 
 const LoadingSkeleton = () => {
-    // Generate random heights for skeleton bars with lower values
-    const skeletonData = [...Array(7)].map((_, i) => ({
-        value: 10 + Math.random() * 30 // Random height between 10 and 40 (reduced from 20-80)
+    const skeletonData = [...Array(7)].map(() => ({
+        value: 10 + Math.random() * 30
     }));
 
     return (
