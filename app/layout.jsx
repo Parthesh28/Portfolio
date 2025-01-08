@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} flex flex-col min-h-screen`}>
 
         
-          <ThemeProvider defaultTheme='system' attribute="class">
+          <ThemeProvider defaultTheme='system' attribute="class" enableSystem>
             <ActiveSectionContextProvider>
               <Navbar />
               <div className='-z-50'>
