@@ -1,13 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../app/components/ui/card"
 import { motion } from "framer-motion"
-import { School, GraduationCap, BookOpen, Zap, Wrench, BookMarked } from 'lucide-react'
+import { School, GraduationCap, Zap, Wrench, BookMarked } from 'lucide-react'
 import { Badge } from "../app/components/ui/badge"
 
 const educationTimeline = [
     {
         year: "2017 - 2019",
         title: "Schooling",
-        description: "cleared secondary and higher secondary exams",
+        description: "Cleared Secondary and Higher Secondary Exams",
         icon: School
     },
     {
@@ -19,11 +19,11 @@ const educationTimeline = [
 ]
 
 const tools = [
-    "Git", "GitHub", "Expo", "VS Code",
+    "Git", "GitHub", "Expo", "VS Code", "Android Studio",
 ]
 
 const skills = [
-    "React-Native", "Express/Hono", "Next.js", "JavaScript", "Java"
+    "JavaScript", "React-Native", "Next.js", "Express",  "Java"
 ]
 
 const MotionCard = motion(Card)
