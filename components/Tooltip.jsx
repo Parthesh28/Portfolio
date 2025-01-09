@@ -6,7 +6,7 @@ export default function CustomTooltip({ active, payload }) {
         const topLanguages = data.languages.slice(0, 3);
 
         return (
-            <div className="bg-zinc-50 dark:bg-zinc-800 p-4 rounded-lg shadow-lg border border-zinc-200 dark:border-zinc-700 w-64">
+            <div className="bg-zinc-100/90 dark:bg-zinc-900/90 backdrop-blur-xl  p-4 rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-700 w-64">
                 <h3 className="text-lg font-semibold mb-3 text-zinc-800 dark:text-zinc-100">{data.date}</h3>
                 <div className="flex items-center mb-3 text-zinc-600 dark:text-zinc-300">
                     <Clock className="w-4 h-4 mr-2 flex-shrink-0" />

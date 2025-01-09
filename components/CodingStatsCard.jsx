@@ -72,7 +72,7 @@ export default function CodingStatsCard({ data }) {
     const isLoading = !data || data.length === 0;
 
     return (
-        <Card className="bg-zinc-100 dark:bg-zinc-900 h-full">
+        <Card className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm h-full">
             <CardHeader>
                 <CardTitle className="text-2xl font-semibold">Activity</CardTitle>
                 <div className="text-sm text-muted-foreground flex items-center">

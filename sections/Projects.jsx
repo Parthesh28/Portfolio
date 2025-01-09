@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import useSectionInView from '../hooks/useSectionInView'
-import { Card, CardContent } from "../app/components/ui/card"
-import { Badge } from '../app/components/ui/badge'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../app/components/ui/carousel"
-import { Button } from "../app/components/ui/button"
-import { Code, Eye } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import useSectionInView from '../hooks/useSectionInView';
+import { Card, CardContent } from "../app/components/ui/card";
+import { Badge } from '../app/components/ui/badge';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../app/components/ui/carousel";
+import { Button } from "../app/components/ui/button";
+import { Code, Eye, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
@@ -41,146 +41,168 @@ const projects = [
     previewLink: 'https://parthesh28.vercel.app',
     techstack: ['Next.js']
   }
-]
+];
+
+const ProjectCard = ({ project, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: index * 0.1 }}
+    className="h-full"
+  >
+    <Card className="group h-full bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm">
+      <CardContent className="p-0 flex flex-col h-full">
+        <div className="relative aspect-video overflow-hidden rounded-t-lg">
+          <Image
+            src={project.image}
+            alt={project.title}
+            width={500}
+            height={300}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/30 via-zinc-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        </div>
+        <div className="p-6 flex flex-col gap-4 flex-grow">
+          <div>
+            <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
+              {project.title}
+            </h3>
+            <p className="text-zinc-600 dark:text-zinc-400">
+              {project.description}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2 mt-auto">
+            {project.techstack.map((tech, i) => (
+              <Badge
+                key={i}
+                variant="secondary"
+                className="bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
+              >
+                {tech}
+              </Badge>
+            ))}
+          </div>
+
+          <div className="flex gap-3 mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+            <Button
+              variant="outline"
+              disabled={!project.codebaseLink}
+              className="flex-1"
+              asChild={!!project.codebaseLink}
+            >
+              {project.codebaseLink ? (
+                <a
+                  href={project.codebaseLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2"
+                >
+                  <Code className="h-4 w-4" />
+                  <span>Code</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              ) : (
+                <span className="flex items-center justify-center gap-2">
+                  <Code className="h-4 w-4" />
+                  <span>Private</span>
+                </span>
+              )}
+            </Button>
+
+            <Button
+              variant="default"
+              disabled={!project.previewLink}
+              className="flex-1"
+              asChild={!!project.previewLink}
+            >
+              {project.previewLink ? (
+                <a
+                  href={project.previewLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2"
+                >
+                  <Eye className="h-4 w-4" />
+                  <span>Preview</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              ) : (
+                <span className="flex items-center justify-center gap-2">
+                  <Eye className="h-4 w-4" />
+                  <span>No Preview</span>
+                </span>
+              )}
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  </motion.div>
+);
 
 export default function Projects() {
-  const [api, setApi] = useState()
-  const [current, setCurrent] = useState(0)
-
-  useEffect(() => {
-    if (!api) {
-      return
-    }
-
-    setCurrent(api.selectedScrollSnap())
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap())
-    })
-  }, [api])
-
+  const [api, setApi] = useState();
+  const [current, setCurrent] = useState(0);
   const { ref } = useSectionInView("Projects", 0.3);
 
+  useEffect(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+  }, [api]);
+
   return (
-    <section id="projects" ref={ref} className="py-20">
-      <motion.h2
-        className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl text-center mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        Projects
-      </motion.h2>
-      <div className='px-4 sm:px-0'>
+    <section id="projects" ref={ref} className="py-24">
+      <div className="max-w-6xl mx-auto px-4">
+        <motion.h2
+          className="text-4xl font-extrabold text-zinc-900 dark:text-zinc-100 text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Projects
+        </motion.h2>
+
         <Carousel
           opts={{
             align: "start",
             loop: true,
           }}
           setApi={setApi}
-          className="w-full max-w-5xl mx-auto"
+          className="max-w-7xl mx-auto"
         >
-          <CarouselContent className="-ml-2 md:-ml-4">
+          <CarouselContent className="-ml-4">
             {projects.map((project, index) => (
-              <CarouselItem key={project.title} className="md:basis-1/2 lg:basis-1/3 pl-2 md:pl-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                >
-                  <Card className="overflow-hidden bg-zinc-100 dark:bg-zinc-900 shadow-lg h-full flex flex-col">
-                    <CardContent className="p-0 flex-grow flex flex-col">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        width={500}
-                        height={300}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="p-6 flex-grow flex flex-col">
-                        <h3 className="text-xl font-semibold text-zinc-800 dark:text-zinc-100 mb-2">{project.title}</h3>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.techstack.map((tech, i) => (
-                            <Badge key={i} variant="secondary" className="rounded-full bg-zinc-200 dark:bg-zinc-700">
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
-                        <p className="text-zinc-600 dark:text-zinc-300 mb-4 flex-grow">{project.description}</p>
-                        <div className="flex gap-3 mt-auto">
-                          <Button
-                            variant="outline"
-                            disabled={!project.codebaseLink}
-                            className={`flex-1 ${!project.codebaseLink ? 'opacity-50 cursor-not-allowed' : 'hover:bg-zinc-200 dark:hover:bg-zinc-800'} transition-colors duration-200`}
-                            asChild={!!project.codebaseLink}
-                          >
-                            {project.codebaseLink ? (
-                              <a
-                                href={project.codebaseLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center"
-                              >
-                                <Code className="mr-2 h-4 w-4" />
-                                Codebase
-                              </a>
-                            ) : (
-                              <span className="inline-flex items-center justify-center">
-                                <Code className="mr-2 h-4 w-4" />
-                                Private
-                              </span>
-                            )}
-                          </Button>
-                          <Button
-                            variant="default"
-                            disabled={!project.previewLink}
-                            className={`flex-1 ${!project.previewLink ? 'opacity-50 cursor-not-allowed' : 'hover:bg-zinc-700 dark:hover:bg-zinc-600'} transition-colors duration-200`}
-                            asChild={!!project.previewLink}
-                          >
-                            {project.previewLink ? (
-                              <a
-                                href={project.previewLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center"
-                              >
-                                <Eye className="mr-2 h-4 w-4" />
-                                Preview
-                              </a>
-                            ) : (
-                              <span className="inline-flex items-center justify-center">
-                                <Eye className="mr-2 h-4 w-4" />
-                                No Preview
-                              </span>
-                            )}
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+              <CarouselItem
+                key={project.title}
+                className="pl-4 md:basis-1/2 lg:basis-1/3"
+              >
+                <ProjectCard project={project} index={index} />
               </CarouselItem>
             ))}
           </CarouselContent>
+
           <div className="hidden md:block">
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="left-[-4rem] hover:bg-zinc-100 dark:hover:bg-zinc-800" />
+            <CarouselNext className="right-[-4rem] hover:bg-zinc-100 dark:hover:bg-zinc-800" />
           </div>
         </Carousel>
-      </div>
-      <div className="flex justify-center gap-2 mt-4">
-        {projects.map((_, i) => (
-          <button
-            key={i}
-            className={`w-2 h-2 rounded-full transition-colors duration-200 ${i === current
-                ? 'bg-zinc-800 dark:bg-zinc-200'
-                : 'bg-zinc-300 dark:bg-zinc-700'
-              }`}
-            onClick={() => api?.scrollTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
+
+        <div className="flex sm:hidden justify-center gap-4 mt-5">
+          {projects.map((_, i) => (
+            <button
+              key={i}
+              className={`w-2 h-2 rounded-full transition-all ${i === current
+                  ? 'bg-zinc-900 dark:bg-zinc-100'
+                  : 'bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400 dark:hover:bg-zinc-600'
+                }`}
+              onClick={() => api?.scrollTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

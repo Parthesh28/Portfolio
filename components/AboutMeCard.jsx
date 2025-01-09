@@ -18,7 +18,7 @@ export default function AboutMeCard() {
     const age = calculateAge("2003-10-23"); // Replace with your actual birth date
 
     return (
-        <Card className="bg-zinc-100 dark:bg-zinc-900 h-full">
+        <Card className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm h-full">
             <CardContent className="pt-6 flex flex-col justify-between h-full">
                 <div className="space-y-4">
                     <p className="text-base pb-2">
