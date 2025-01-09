@@ -30,33 +30,36 @@ const navItems = [
 ]
 
 export default function Navbar() {
-
   const { activeSection, setActiveSection, setLastClickTime } = useActiveSection()
 
   return (
     <header className='z-40 relative'>
       <motion.div
-        className='fixed bottom-4 sm:bottom-auto sm:top-6 left-1/2 -translate-x-1/2 h-[3.5rem] w-[23rem] rounded-full border border-slate-500 border-opacity-40 bg-zinc-50 bg-opacity-50 dark:bg-zinc-900 dark:bg-opacity-50 shadow-lg shadow-black/[0.03] dark:shadow-white/[0.03] backdrop-blur-xl sm:h-[3.25rem] sm:w-[36rem]'
+        className='fixed bottom-4 sm:bottom-auto sm:top-6 left-1/2 -translate-x-1/2 h-[3.5rem] w-[20rem] sm:w-[32rem] rounded-2xl 
+          bg-zinc-100/90 dark:bg-zinc-600/30 backdrop-blur-md
+          border border-slate-300 dark:border-slate-800
+          hover:border-black/10 dark:hover:border-white/10 
+
+          transition-all duration-300'
         initial={{ y: -100, x: "-50%", opacity: 0 }}
         animate={{ y: 0, x: "-50%", opacity: 1 }}
-      ></motion.div>
+      />
 
-      <nav className="flex fixed bottom-[1.35rem] sm:bottom-auto sm:top-[1.7rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:h-[initial] sm:py-0">
-        <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium sm:w-[initial] sm:flex-nowrap sm:gap-4">
+      <nav className="flex fixed bottom-[1.35rem] sm:bottom-auto sm:top-0 left-1/2 h-12 -translate-x-1/2 sm:h-[5.5rem]">
+        <ul className="flex w-[19rem] sm:w-[31rem] items-center justify-between px-3 text-[0.9rem] font-medium">
           {navItems.map((link) => (
             <motion.li
-              className="h-3/4 flex items-center justify-center relative"
+              className="h-3/4 flex items-center sm:mt-[1rem] justify-center"
               key={link.hash}
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
               <Link
                 className={clsx(
-                  "relative flex w-full items-center justify-center px-7 py-3 hover:text-gray-600 transition dark:text-gray-200 dark:hover:text-gray-500",
-                  {
-                    "text-gray-950 dark:text-gray-200":
-                      activeSection === link.name,
-                  }
+                  "relative flex w-full items-center justify-center px-4 py-2.5 transition-all duration-200",
+                  activeSection === link.name
+                    ? "text-gray-950 dark:text-white"
+                    : "text-gray-600/90 dark:text-gray-400 hover:text-gray-950 dark:hover:text-gray-200"
                 )}
                 href={link.hash}
                 onClick={() => {
@@ -65,19 +68,29 @@ export default function Navbar() {
                 }}
               >
                 {link.name === activeSection && (
-                  <motion.span className='absolute inset-0 bg-gray-200 rounded-full h-9 top-[0.28rem] -z-10 dark:bg-zinc-800'
+                  <motion.span
+                    className='absolute inset-0 bg-zinc-950/[0.15] dark:bg-zinc-100/[0.15] rounded-xl -z-10
+                      shadow-[inset_0_0_1px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_0_1px_rgba(255,255,255,0.1)]'
                     layoutId='activeSection'
-                    transition={
-                      {
-                        type: 'spring',
-                        stiffness: 400,
-                        damping: 50
-                      }
-                    }
-                  ></motion.span>
+                    transition={{
+                      type: 'spring',
+                      stiffness: 380,
+                      damping: 30
+                    }}
+                  />
                 )}
-                <span className="hidden sm:block">{link.name}</span>
-                <link.Icon className="block sm:hidden h-5 w-5" />
+                <span className="hidden sm:block font-medium tracking-wide">
+                  {link.name}
+                </span>
+                <link.Icon
+                  className={clsx(
+                    "block sm:hidden h-5 w-5 transition-transform duration-200",
+                    activeSection === link.name
+                      ? "scale-110"
+                      : "scale-100"
+                  )}
+                  strokeWidth={2}
+                />
               </Link>
             </motion.li>
           ))}

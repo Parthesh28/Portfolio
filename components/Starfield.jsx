@@ -1,92 +1,113 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useMemo } from 'react'
 import { useTheme } from 'next-themes'
 
 const STAR_COUNT = 1500
-const STAR_SIZE = 0.003 // Relative to screen width
-const STAR_SPEED = 0.002 // Reduced from 0.01 to 0.002 for slower movement
+const STAR_SIZE_RANGE = { min: 0.001, max: 0.004 }
+const STAR_SPEED_RANGE = { min: 0.0015, max: 0.003 }
+const TRAIL_LENGTH = 3
 
-export default function StarfieldBackground() {
-    const canvasRef = useRef(null)
+
+const createStars = () => {
+    return Array.from({ length: STAR_COUNT }, () => ({
+        x: Math.random() * 2 - 1,
+        y: Math.random() * 2 - 1,
+        z: Math.random(),
+        size: Math.random() * (STAR_SIZE_RANGE.max - STAR_SIZE_RANGE.min) + STAR_SIZE_RANGE.min,
+        speed: Math.random() * (STAR_SPEED_RANGE.max - STAR_SPEED_RANGE.min) + STAR_SPEED_RANGE.min,
+        trail: [],
+    }))
+}
+
+const StarfieldBackground = () => {
+    const canvasRef = useRef (null)
+    const animationFrameId = useRef(0)
     const { theme } = useTheme()
+
+    const stars = useMemo(() => createStars(), [])
 
     useEffect(() => {
         const canvas = canvasRef.current
-        const ctx = canvas.getContext('2d')
-        let animationFrameId
-        let stars = []
+        if (!canvas) return
 
-        const initCanvas = () => {
+        const ctx = canvas.getContext('2d')
+        if (!ctx) return
+
+        const resizeCanvas = () => {
             canvas.width = window.innerWidth
             canvas.height = window.innerHeight
         }
 
-        const createStars = () => {
-            for (let i = 0; i < STAR_COUNT; i++) {
-                stars.push({
-                    x: Math.random() * 2 - 1, // Range: -1 to 1
-                    y: Math.random() * 2 - 1, // Range: -1 to 1
-                    z: Math.random(),
-                    size: Math.random() * STAR_SIZE,
-                })
-            }
-        }
+        resizeCanvas()
+        window.addEventListener('resize', resizeCanvas)
 
         const drawStars = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-            const bgColor = theme === 'dark' ? 'black' : 'white'
-            const starColor = theme === 'dark' ? 'white' : 'black'
-
+            const bgColor = theme === 'dark' ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)'
+            const starColor = theme === 'dark' ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)'
             ctx.fillStyle = bgColor
             ctx.fillRect(0, 0, canvas.width, canvas.height)
 
             const centerX = canvas.width / 2
             const centerY = canvas.height / 2
 
-            ctx.fillStyle = starColor
             stars.forEach(star => {
                 const x = (star.x / star.z) * centerX + centerX
                 const y = (star.y / star.z) * centerY + centerY
                 const size = (1 - star.z) * star.size * canvas.width
 
+                // Draw trail
+                ctx.beginPath()
+                star.trail.forEach((point, index) => {
+                    const opacity = (index + 1) / TRAIL_LENGTH * 0.5
+                    ctx.strokeStyle = `rgba(${starColor === 'rgb(255, 255, 255)' ? '255, 255, 255,' : '0, 0, 0,'} ${opacity})`
+                    ctx.lineWidth = size * (index + 1) / TRAIL_LENGTH
+                    if (index === 0) {
+                        ctx.moveTo(point.x, point.y)
+                    } else {
+                        ctx.lineTo(point.x, point.y)
+                    }
+                })
+                ctx.stroke()
+
+
+                ctx.fillStyle = starColor
                 ctx.beginPath()
                 ctx.arc(x, y, size, 0, 2 * Math.PI)
                 ctx.fill()
+
+                star.trail.unshift({ x, y })
+                if (star.trail.length > TRAIL_LENGTH) {
+                    star.trail.pop()
+                }
             })
         }
 
         const animate = () => {
             drawStars()
-            stars = stars.map(star => ({
-                ...star,
-                z: (star.z - STAR_SPEED + 1) % 1
-            }))
-            animationFrameId = requestAnimationFrame(animate)
+            stars.forEach(star => {
+                star.z = (star.z - star.speed + 1) % 1
+            })
+            animationFrameId.current = requestAnimationFrame(animate)
         }
 
-        const handleResize = () => {
-            initCanvas()
-            drawStars()
-        }
-
-        initCanvas()
-        createStars()
         animate()
 
-        window.addEventListener('resize', handleResize)
-
         return () => {
-            window.removeEventListener('resize', handleResize)
-            cancelAnimationFrame(animationFrameId)
+            cancelAnimationFrame(animationFrameId.current)
+            window.removeEventListener('resize', resizeCanvas)
         }
-    }, [theme])
+    }, [theme, stars])
 
     return (
         <canvas
             ref={canvasRef}
-            className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
+            className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none transition-opacity duration-1000"
         />
     )
 }
+
+export default StarfieldBackground
+

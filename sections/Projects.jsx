@@ -5,8 +5,7 @@ import useSectionInView from '../hooks/useSectionInView';
 import { Card, CardContent } from "../app/components/ui/card";
 import { Badge } from '../app/components/ui/badge';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../app/components/ui/carousel";
-import { Button } from "../app/components/ui/button";
-import { Code, Eye, ExternalLink } from 'lucide-react';
+import { Code, Eye, EyeOff, Link2Off } from 'lucide-react';
 
 const projects = [
   {
@@ -50,9 +49,9 @@ const ProjectCard = ({ project, index }) => (
     transition={{ duration: 0.6, delay: index * 0.1 }}
     className="h-full"
   >
-    <Card className="group h-full bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm">
+    <Card className="group h-full bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm rounded-2xl">
       <CardContent className="p-0 flex flex-col h-full">
-        <div className="relative aspect-video overflow-hidden rounded-t-lg">
+        <div className="relative aspect-video overflow-hidden rounded-t-2xl">
           <Image
             src={project.image}
             alt={project.title}
@@ -84,62 +83,69 @@ const ProjectCard = ({ project, index }) => (
             ))}
           </div>
 
-          <div className="flex gap-3 mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
-            <Button
-              variant="outline"
-              disabled={!project.codebaseLink}
-              className="flex-1"
-              asChild={!!project.codebaseLink}
-            >
-              {project.codebaseLink ? (
-                <a
-                  href={project.codebaseLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <Code className="h-4 w-4" />
-                  <span>Code</span>
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              ) : (
-                <span className="flex items-center justify-center gap-2">
-                  <Code className="h-4 w-4" />
-                  <span>Private</span>
-                </span>
-              )}
-            </Button>
+          <div className="flex gap-4 mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+            {project.codebaseLink ? (
+              <a
+                href={project.codebaseLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
+                relative overflow-hidden
+                bg-zinc-300 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100
+                shadow-sm hover:shadow-md font-medium
+                transition-all duration-300
+                group/btn"
+              >
+                <div className="absolute inset-0 bg-zinc-400/80 dark:bg-zinc-700
+                  transform translate-x-[-100%] group-hover/btn:translate-x-0
+                  transition-transform duration-300 ease-out"
+                />
+                <Code className="h-4 w-4 relative z-10" />
+                <span className="relative z-10">Code</span>
+              </a>
+            ) : (
+              <span className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
+                bg-zinc-400/80 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-500
+                cursor-not-allowed font-medium">
+                <EyeOff className="h-4 w-4" />
+                <span>Private</span>
+              </span>
+            )}
 
-            <Button
-              variant="default"
-              disabled={!project.previewLink}
-              className="flex-1"
-              asChild={!!project.previewLink}
-            >
-              {project.previewLink ? (
-                <a
-                  href={project.previewLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <Eye className="h-4 w-4" />
-                  <span>Preview</span>
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              ) : (
-                <span className="flex items-center justify-center gap-2">
-                  <Eye className="h-4 w-4" />
-                  <span>No Preview</span>
-                </span>
-              )}
-            </Button>
+            {project.previewLink ? (
+              <a
+                href={project.previewLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
+                relative overflow-hidden
+                bg-zinc-400 dark:bg-zinc-700
+                shadow-sm hover:shadow-md font-medium
+                transition-all duration-300
+                group/btn"
+              >
+                <div className="absolute inset-0 bg-zinc-500/50 dark:bg-zinc-600/80
+                  transform translate-x-[-100%] group-hover/btn:translate-x-0
+                  transition-transform duration-300 ease-out"
+                />
+                <Eye className="h-4 w-4 relative z-10" />
+                <span className="relative z-10">Demo</span>
+              </a>
+            ) : (
+              <span className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
+                bg-zinc-200/50 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-500
+                cursor-not-allowed font-medium">
+                <Link2Off className="h-4 w-4" />
+                <span>Unhosted</span>
+              </span>
+            )}
           </div>
         </div>
       </CardContent>
     </Card>
   </motion.div>
 );
+
 
 export default function Projects() {
   const [api, setApi] = useState();
@@ -194,7 +200,7 @@ export default function Projects() {
           {projects.map((_, i) => (
             <button
               key={i}
-              className={`w-2 h-2 rounded-full transition-all ${i === current
+              className={`w-[0.45rem] h-[0.45rem] -mx-1 rounded-full transition-all ${i === current
                   ? 'bg-zinc-900 dark:bg-zinc-100'
                   : 'bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400 dark:hover:bg-zinc-600'
                 }`}

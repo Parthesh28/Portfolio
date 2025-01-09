@@ -1,14 +1,16 @@
-import { motion } from 'framer-motion';
-import { Instagram, Github, Linkedin, Coffee, Mail } from 'lucide-react';
-import { Card, CardContent } from '../app/components/ui/card';
-import { Separator } from '../app/components/ui/separator';
-import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '../app/components/ui/tooltip';
-import WobbleCard from '../components/WobbleCard';
-import useSectionInView from '../hooks/useSectionInView';
+'use client'
+
+import { motion } from 'framer-motion'
+import { Instagram, Github, Linkedin, Coffee, Mail, ArrowRight } from 'lucide-react'
+import { Card, CardContent } from '../app/components/ui/card'
+import { Separator } from '../app/components/ui/separator'
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '../app/components/ui/tooltip'
+import { Button } from '../app/components/ui/button'
+import useSectionInView from '../hooks/useSectionInView'
 
 export default function Contact() {
-  const { ref } = useSectionInView("Connect", 0.3);
-  const email = 'partheshpurohit23@gmail.com';
+  const { ref } = useSectionInView("Connect", 0.3)
+  const email = 'partheshpurohit23@gmail.com'
 
   const socialLinks = [
     {
@@ -31,7 +33,7 @@ export default function Contact() {
       href: 'https://www.buymeacoffee.com/parthesh28',
       label: 'Support Me!',
     }
-  ];
+  ]
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -43,7 +45,7 @@ export default function Contact() {
         staggerChildren: 0.15
       }
     }
-  };
+  }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 10 },
@@ -54,74 +56,73 @@ export default function Contact() {
         duration: 0.5
       }
     }
-  };
+  }
 
   return (
     <section id="connect" className="py-24" ref={ref}>
-      <div className="max-w-2xl mx-auto px-4">
+      <div className="max-w-3xl mx-auto px-4">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <WobbleCard>
-            <Card className="overflow-hidden bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm ring-1 ring-zinc-900/5 dark:ring-white/10">
-              <CardContent className="p-8">
-                <div className="flex flex-col items-center space-y-8">
-                  <motion.h2
-                    className="text-3xl font-bold text-zinc-900 dark:text-zinc-100"
-                    variants={itemVariants}
+          <Card className="overflow-hidden bg-zinc-100/70 dark:bg-zinc-900/70  backdrop-blur-sm rounded-2xl shadow-xl ring-1 ring-zinc-900/5 dark:ring-white/10">
+            <CardContent className="p-8">
+              <div className="flex flex-col items-center space-y-8">
+                <motion.h2
+                  className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight"
+                  variants={itemVariants}
+                >
+                  Let's Connect
+                </motion.h2>
+
+                <motion.p
+                  className="text-zinc-600 dark:text-zinc-400 text-center text-lg"
+                  variants={itemVariants}
+                >
+                  Feel free to reach out through any of these channels!
+                </motion.p>
+
+                <Separator className="w-full max-w-md bg-zinc-300 dark:bg-zinc-700" />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  className="flex items-center justify-center"
+                >
+                  <a
+                    href={`mailto:${email}`}
+                    aria-label="Send email"
+                    className="group relative inline-flex items-center justify-center px-6 py-3 bg-zinc-400/80 dark:bg-zinc-800 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-zinc-300/25 dark:hover:shadow-zinc-700/25"
                   >
-                    Let's Connect
-                  </motion.h2>
+                    <div className="absolute inset-0 bg-zinc-500 dark:bg-zinc-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                    <Mail className="w-5 h-5 mr-2 relative z-10" />
+                    <span className="underline underline-offset-1 font-medium relative z-10">
+                      Email Me!
+                    </span>
+                  </a>
+                </motion.div>
 
-                  <motion.p
-                    className="text-zinc-600 dark:text-zinc-400 text-center"
-                    variants={itemVariants}
-                  >
-                    Feel free to reach out through any of these channels!
-                  </motion.p>
+                <Separator className="w-full max-w-md bg-zinc-300 dark:bg-zinc-700" />
 
-                  <Separator className="w-full max-w-md bg-zinc-200 dark:bg-zinc-800" />
-
-                  <motion.div
-                    className="w-full max-w-md"
-                    variants={itemVariants}
-                  >
-                    <a
-                      href={`mailto:${email}`}
-                      className="group relative flex items-center justify-center w-full p-4 bg-zinc-200 dark:bg-zinc-800 rounded-xl transition-all duration-300 hover:scale-[1.02]"
-                      aria-label="Send email"
-                    >
-                      <div className="absolute inset-0 bg-zinc-300 dark:bg-zinc-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <Mail className="w-5 h-5 mr-3 text-zinc-700 dark:text-zinc-300 relative z-10" />
-                      <span className="font-medium underline underline-offset-1 text-zinc-900 dark:text-zinc-100 relative z-10 transition-all duration-300 group-hover:tracking-wide">
-                        Email Me!
-                      </span>
-                    </a>
-                  </motion.div>
-
-                  <Separator className="w-full max-w-md bg-zinc-200 dark:bg-zinc-800" />
-
-                  <motion.div
-                    className="flex flex-wrap justify-center gap-4"
-                    variants={itemVariants}
-                  >
-                    <TooltipProvider delayDuration={200}>
-                      {socialLinks.map((link, index) => (
-                        <SocialLink key={index} link={link} />
-                      ))}
-                    </TooltipProvider>
-                  </motion.div>
-                </div>
-              </CardContent>
-            </Card>
-          </WobbleCard>
+                <motion.div
+                  className="flex flex-wrap justify-center gap-4"
+                  variants={itemVariants}
+                >
+                  <TooltipProvider delayDuration={200}>
+                    {socialLinks.map((link, index) => (
+                      <SocialLink key={index} link={link} />
+                    ))}
+                  </TooltipProvider>
+                </motion.div>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
     </section>
-  );
+  )
 }
 
 function SocialLink({ link }) {
@@ -132,14 +133,10 @@ function SocialLink({ link }) {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-4 rounded-xl bg-zinc-200 dark:bg-zinc-800 transition-all duration-300 hover:scale-105 hover:bg-zinc-300 dark:hover:bg-zinc-700"
+          className="p-4 rounded-2xl bg-zinc-300 dark:bg-zinc-800 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
           aria-label={link.label}
-          whileHover={{
-            rotate: [0, -8, 8, -4, 4, 0],
-            transition: { duration: 0.5 }
-          }}
         >
-          <link.icon className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+          <link.icon className="w-6 h-6 text-zinc-700 dark:text-zinc-300" />
         </motion.a>
       </TooltipTrigger>
       <TooltipContent
@@ -149,5 +146,6 @@ function SocialLink({ link }) {
         {link.label}
       </TooltipContent>
     </Tooltip>
-  );
+  )
 }
+

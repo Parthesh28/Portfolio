@@ -18,7 +18,7 @@ export default function AboutMeCard() {
     const age = calculateAge("2003-10-23");
 
     return (
-        <Card className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm h-full group">
+        <Card className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm rounded-2xl h-full group">
             <CardContent className="pt-6 px-5 flex flex-col justify-between h-full">
                 <div className="space-y-4">
                     <div className="relative">

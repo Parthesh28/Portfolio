@@ -70,7 +70,7 @@ export default function Skills() {
                 >
                     <MotionCard
                         variants={itemVariants}
-                        className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm ring-1 ring-zinc-900/5 dark:ring-white/10"
+                        className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm ring-1 rounded-2xl ring-zinc-900/5 dark:ring-white/10"
                     >
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
@@ -112,7 +112,7 @@ export default function Skills() {
                     <div className="space-y-6">
                         <MotionCard
                             variants={itemVariants}
-                            className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm ring-1 ring-zinc-900/5 dark:ring-white/10"
+                            className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm ring-1 rounded-2xl ring-zinc-900/5 dark:ring-white/10"
                         >
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
@@ -143,7 +143,7 @@ export default function Skills() {
 
                         <MotionCard
                             variants={itemVariants}
-                            className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm ring-1 ring-zinc-900/5 dark:ring-white/10"
+                            className="bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm ring-1 rounded-2xl ring-zinc-900/5 dark:ring-white/10"
                         >
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-zinc-900 dark:text-zinc-100">

@@ -22,7 +22,7 @@ export default function ThemeToggle() {
 
   return (
     <motion.button
-      className="fixed top-4 sm:top-auto sm:bottom-4 right-4 p-3 rounded-xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 text-zinc-800 dark:text-zinc-200 shadow-lg hover:shadow-xl z-10 backdrop-blur-sm border border-zinc-200 dark:border-zinc-700/50"
+      className="fixed top-4 sm:top-auto sm:bottom-4 right-4 p-3 rounded-xl bg-zinc-200/70 backdrop-blur-sm dark:bg-zinc-800/70"
       onClick={toggleTheme}
       whileHover={{
         scale: 1.05,
