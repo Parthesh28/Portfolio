@@ -3,11 +3,9 @@
 import { useEffect, useRef } from 'react'
 import { useTheme } from 'next-themes'
 
-const STAR_COUNT = 1000
-const STAR_SIZE = 0.0045
-const STAR_SPEED = 0.005
-const TRAIL_LENGTH = 6
-
+const STAR_COUNT = 1500
+const STAR_SIZE = 0.005
+const STAR_SPEED = 0.002 
 export default function StarfieldBackground() {
     const canvasRef = useRef(null)
     const { theme } = useTheme()
@@ -15,18 +13,21 @@ export default function StarfieldBackground() {
     useEffect(() => {
         const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
-        let stars = []
         let animationFrameId
+        let stars = []
+
+        const initCanvas = () => {
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
+        }
 
         const createStars = () => {
-            stars = []
             for (let i = 0; i < STAR_COUNT; i++) {
                 stars.push({
-                    x: Math.random() * 2 - 1,
-                    y: Math.random() * 2 - 1,
+                    x: Math.random() * 2 - 1, // Range: -1 to 1
+                    y: Math.random() * 2 - 1, // Range: -1 to 1
                     z: Math.random(),
                     size: Math.random() * STAR_SIZE,
-                    trail: [],
                 })
             }
         }
@@ -42,61 +43,36 @@ export default function StarfieldBackground() {
             const centerX = canvas.width / 2
             const centerY = canvas.height / 2
 
+            ctx.fillStyle = starColor
             stars.forEach(star => {
                 const x = (star.x / star.z) * centerX + centerX
                 const y = (star.y / star.z) * centerY + centerY
                 const size = (1 - star.z) * star.size * canvas.width
 
-                // Draw the star
-                ctx.fillStyle = starColor
                 ctx.beginPath()
                 ctx.arc(x, y, size, 0, 2 * Math.PI)
                 ctx.fill()
-
-                // Draw the trail
-                star.trail.forEach((trailPos, index) => {
-                    const trailX = (trailPos.x / trailPos.z) * centerX + centerX
-                    const trailY = (trailPos.y / trailPos.z) * centerY + centerY
-                    const trailSize = (1 - trailPos.z) * star.size * canvas.width
-                    const alpha = (TRAIL_LENGTH - index) / TRAIL_LENGTH * 0.5
-
-                    ctx.fillStyle = `rgba(${theme === 'dark' ? '255,255,255,' : '0,0,0,'}${alpha})`
-                    ctx.beginPath()
-                    ctx.arc(trailX, trailY, trailSize, 0, 2 * Math.PI)
-                    ctx.fill()
-                })
             })
         }
 
         const animate = () => {
             drawStars()
-            stars = stars.map(star => {
-                const newZ = (star.z - STAR_SPEED + 1) % 1
-                const trail = [
-                    { x: star.x, y: star.y, z: star.z },
-                    ...star.trail.slice(0, TRAIL_LENGTH - 1)
-                ]
-                return {
-                    ...star,
-                    z: newZ,
-                    trail,
-                }
-            })
+            stars = stars.map(star => ({
+                ...star,
+                z: (star.z - STAR_SPEED + 1) % 1
+            }))
             animationFrameId = requestAnimationFrame(animate)
         }
-
         const handleResize = () => {
-            canvas.width = window.innerWidth
-            canvas.height = window.innerHeight
-            createStars()
+            initCanvas()
+            drawStars()
         }
 
-        handleResize()
+        initCanvas()
         createStars()
         animate()
 
         window.addEventListener('resize', handleResize)
-
         return () => {
             window.removeEventListener('resize', handleResize)
             cancelAnimationFrame(animationFrameId)
@@ -110,4 +86,3 @@ export default function StarfieldBackground() {
         />
     )
 }
-
