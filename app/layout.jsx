@@ -1,4 +1,3 @@
-'use '
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Navbar from '../components/Navbar'
@@ -15,13 +14,12 @@ export const metadata = {
   description: 'Full Stack Web Developer',
 }
 
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} flex flex-col min-h-screen`}>
 
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ActiveSectionContextProvider>
             <Navbar />
             <div className='-z-50'>
