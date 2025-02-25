@@ -13,7 +13,7 @@ const educationTimeline = [
     {
         year: "2022-2026",
         title: "Degree",
-        description: "B.E. in Computer Engineering from SFIT, Borivali",
+        description: "B.E. in Computer Engineering",
         icon: GraduationCap
     }
 ]
@@ -23,7 +23,7 @@ const tools = [
 ]
 
 const skills = [
-    "JavaScript", "React-Native", "Next.js", "Express",  "Java"
+    "TypeScript", "React-Native", "Next.js", "Express/Hono",  "Java"
 ]
 
 const MotionCard = motion(Card)

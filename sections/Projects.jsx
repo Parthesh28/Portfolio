@@ -9,6 +9,14 @@ import { Code, Eye, EyeOff, Link2Off } from 'lucide-react';
 
 const projects = [
   {
+    title: 'Pulp',
+    description: 'An easy to use code-sharing platform for students',
+    image: '/assets/Pulp.png',
+    codebaseLink: 'https://github.com/sfitdevs/pulp-frontend',
+    previewLink: 'https://pulp.yadav.id',
+    techstack: ['Next.js', 'Cloudflare D1']
+  },
+  {
     title: 'BlockMart',
     description: 'A e-commerce platform built on Ethereum blockchain.',
     image: '/assets/BlockMart.png',
@@ -17,24 +25,24 @@ const projects = [
     techstack: ['Solidity', 'Ethereum', 'Next.js']
   },
   {
-    title: 'Pulp',
-    description: 'An easy to use code-sharing platform utility for students',
-    image: '/assets/Pulp.png',
-    codebaseLink: 'https://github.com/sfitdevs/pulp-frontend',
-    previewLink: 'https://pulp.yadav.id',
-    techstack: ['Next.js', 'Cloudflare D1']
-  },
-  {
     title: 'CodeX',
     description: 'A fully responsive website designed for CodeX-SFIT',
     image: '/assets/CodeX.png',
     codebaseLink: '',
-    previewLink: '',
+    previewLink: 'https://codex.sfit.ac.in',
     techstack: ['Next.js']
   },
   {
+    title: 'Symphony Ledger',
+    description: 'Ledger for music on Solana',
+    image: '/assets/Symphony.png',
+    codebaseLink: 'https://github.com/Parthesh28/Symphony_Ledger',
+    previewLink: '',
+    techstack: ['Vite.js', 'Solana']
+  },
+  {
     title: 'Portfolio',
-    description: 'A modern portfolio website that was made with pain',
+    description: 'A modern portfolio website made with pain',
     image: '/assets/Portfolio.png',
     codebaseLink: '',
     previewLink: 'https://parthesh28.vercel.app',
