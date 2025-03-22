@@ -1,16 +1,23 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTheme } from 'next-themes'
 
 const STAR_COUNT = 1500
 const STAR_SIZE = 0.005
-const STAR_SPEED = 0.002 
+const STAR_SPEED = 0.002
 export default function StarfieldBackground() {
     const canvasRef = useRef(null)
-    const { theme } = useTheme()
+    const { theme, resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    useEffect(() => {
+        if (!mounted) return
+
         const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
         let animationFrameId
@@ -35,8 +42,10 @@ export default function StarfieldBackground() {
         const drawStars = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-            const bgColor = theme === 'dark' ? 'black' : 'white'
-            const starColor = theme === 'dark' ? 'white' : 'black'
+            const currentTheme = resolvedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            const bgColor = currentTheme === 'dark' ? 'black' : 'white'
+            const starColor = currentTheme === 'dark' ? 'white' : 'black'
+
             ctx.fillStyle = bgColor
             ctx.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -77,7 +86,7 @@ export default function StarfieldBackground() {
             window.removeEventListener('resize', handleResize)
             cancelAnimationFrame(animationFrameId)
         }
-    }, [theme])
+    }, [theme, resolvedTheme, mounted])
 
     return (
         <canvas

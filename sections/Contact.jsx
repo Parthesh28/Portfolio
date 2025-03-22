@@ -5,7 +5,6 @@ import { Instagram, Github, Linkedin, Coffee, Mail, ArrowRight } from 'lucide-re
 import { Card, CardContent } from '../app/components/ui/card'
 import { Separator } from '../app/components/ui/separator'
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '../app/components/ui/tooltip'
-import { Button } from '../app/components/ui/button'
 import useSectionInView from '../hooks/useSectionInView'
 
 export default function Contact() {
@@ -60,55 +59,59 @@ export default function Contact() {
 
   return (
     <section id="connect" className="py-24" ref={ref}>
-      <div className="max-w-3xl mx-auto px-4">
+      <div className="max-w-2xl mx-auto px-4">
+        <motion.h2
+          className="text-4xl font-extrabold text-zinc-900 dark:text-zinc-100 text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Let's Connect
+        </motion.h2>
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
+          className="max-w-md mx-auto"
         >
-          <Card className="overflow-hidden bg-zinc-100/70 dark:bg-zinc-900/70  backdrop-blur-sm rounded-2xl shadow-xl ring-1 ring-zinc-900/5 dark:ring-white/10">
-            <CardContent className="p-8">
-              <div className="flex flex-col items-center space-y-8">
-                <motion.h2
-                  className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight"
-                  variants={itemVariants}
-                >
-                  Let's Connect
-                </motion.h2>
-
-                <motion.p
-                  className="text-zinc-600 dark:text-zinc-400 text-center text-lg"
-                  variants={itemVariants}
-                >
-                  Feel free to reach out through any of these channels!
-                </motion.p>
-
-                <Separator className="w-full max-w-md bg-zinc-300 dark:bg-zinc-700" />
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                  className="flex items-center justify-center"
-                >
-                  <a
+          <Card className="overflow-hidden bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-sm rounded-2xl shadow-xl ring-1 ring-zinc-900/5 dark:ring-white/10">
+            <CardContent className="p-0">
+              {/* Email Section */}
+              <motion.div
+                className="px-8 py-6 relative after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-gradient-to-r after:from-zinc-300/30 after:via-primary/60 after:to-zinc-300/30 dark:after:from-zinc-700/60 dark:after:via-primary/50 dark:after:to-zinc-700/60 after:shadow-sm"
+                variants={itemVariants}
+              >
+                <div className="flex items-center justify-center flex-wrap gap-4">
+                  <motion.a
                     href={`mailto:${email}`}
                     aria-label="Send email"
-                    className="group relative inline-flex items-center justify-center px-6 py-3 bg-zinc-400/80 dark:bg-zinc-800 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-zinc-300/25 dark:hover:shadow-zinc-700/25"
+                    className="relative inline-flex items-center justify-center px-7 py-3.5 
+                    bg-gradient-to-tr from-zinc-800 to-zinc-700 dark:from-zinc-200 dark:to-zinc-300
+                    text-white dark:text-zinc-900 font-medium rounded-xl overflow-hidden 
+                    shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300
+                    group"
+                    whileHover={{
+                      scale: 1.03,
+                      transition: { duration: 0.2 }
+                    }}
                   >
-                    <div className="absolute inset-0 bg-zinc-500 dark:bg-zinc-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                    <Mail className="w-5 h-5 mr-2 relative z-10" />
-                    <span className="underline underline-offset-1 font-medium relative z-10">
-                      Email Me!
-                    </span>
-                  </a>
-                </motion.div>
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r 
+                    from-primary/40 via-transparent to-transparent opacity-0 
+                    group-hover:opacity-100 group-hover:animate-shimmer 
+                    transition-opacity"></span>
 
-                <Separator className="w-full max-w-md bg-zinc-300 dark:bg-zinc-700" />
-
+                    <Mail className="w-5 h-5 mr-2.5 transition-transform group-hover:translate-y-[-2px]" strokeWidth={2} />
+                    <span className="tracking-wide">Email</span>
+                  </motion.a>
+                </div>
+              </motion.div>
+              {/* Social Links */}
+              <div className="px-8 py-6">
                 <motion.div
-                  className="flex flex-wrap justify-center gap-4"
-                  variants={itemVariants}
+                  className="flex justify-center items-center gap-6"
+                  variants={containerVariants}
                 >
                   <TooltipProvider delayDuration={200}>
                     {socialLinks.map((link, index) => (
@@ -133,10 +136,15 @@ function SocialLink({ link }) {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-4 rounded-2xl bg-zinc-300 dark:bg-zinc-800 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
+          className="flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-200 dark:bg-zinc-800/80 border border-zinc-200/60 dark:border-zinc-700/60 
+          hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors duration-300"
           aria-label={link.label}
+          whileHover={{
+            scale: 1.03,
+            transition: { duration: 0.2 }
+          }}
         >
-          <link.icon className="w-6 h-6 text-zinc-700 dark:text-zinc-300" />
+          <link.icon className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
         </motion.a>
       </TooltipTrigger>
       <TooltipContent

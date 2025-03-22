@@ -35,18 +35,14 @@ export default function Navbar() {
   return (
     <header className='z-40 relative'>
       <motion.div
-        className='fixed bottom-4 sm:bottom-auto sm:top-6 left-1/2 -translate-x-1/2 h-[3.5rem] w-[20rem] sm:w-[32rem] rounded-2xl 
-          bg-zinc-100/90 dark:bg-zinc-600/30 backdrop-blur-md
-          border border-slate-300 dark:border-slate-800
-          hover:border-black/10 dark:hover:border-white/10 
-
-          transition-all duration-300'
+        className='fixed bottom-4 sm:top-6 left-1/2 -translate-x-1/2 h-[3.5rem] w-[20rem] sm:w-[35rem] rounded-2xl 
+          bg-zinc-100/80 dark:bg-zinc-900/95 backdrop-blur-sm border-[1.5px] border-zinc-300 dark:border-zinc-700/50 shadow-md'
         initial={{ y: -100, x: "-50%", opacity: 0 }}
         animate={{ y: 0, x: "-50%", opacity: 1 }}
       />
 
-      <nav className="flex fixed bottom-[1.35rem] sm:bottom-auto sm:top-0 left-1/2 h-12 -translate-x-1/2 sm:h-[5.5rem]">
-        <ul className="flex w-[19rem] sm:w-[31rem] items-center justify-between px-3 text-[0.9rem] font-medium">
+      <nav className="flex fixed bottom-[1.35rem] sm:top-0 left-1/2 h-12 -translate-x-1/2 sm:h-[5.5rem]">
+        <ul className="flex w-[19rem] sm:w-[34rem] items-center justify-between px-4 text-[1rem] font-medium">
           {navItems.map((link) => (
             <motion.li
               className="h-3/4 flex items-center sm:mt-[1rem] justify-center"
@@ -56,10 +52,10 @@ export default function Navbar() {
             >
               <Link
                 className={clsx(
-                  "relative flex w-full items-center justify-center px-4 py-2.5 transition-all duration-200",
+                  "relative flex w-full items-center justify-center px-4 py-3 transition-custom rounded-lg ",
                   activeSection === link.name
-                    ? "text-gray-950 dark:text-white"
-                    : "text-gray-600/90 dark:text-gray-400 hover:text-gray-950 dark:hover:text-gray-200"
+                    ? "text-black dark:text-white font-semibold"
+                    : "text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white"
                 )}
                 href={link.hash}
                 onClick={() => {
@@ -69,8 +65,7 @@ export default function Navbar() {
               >
                 {link.name === activeSection && (
                   <motion.span
-                    className='absolute inset-0 bg-zinc-950/[0.15] dark:bg-zinc-100/[0.15] rounded-xl -z-10
-                      shadow-[inset_0_0_1px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_0_1px_rgba(255,255,255,0.1)]'
+                    className='absolute inset-0 bg-zinc-400/40 dark:bg-zinc-700 rounded-2xl -z-10'
                     layoutId='activeSection'
                     transition={{
                       type: 'spring',
@@ -79,17 +74,17 @@ export default function Navbar() {
                     }}
                   />
                 )}
-                <span className="hidden sm:block font-medium tracking-wide">
+                <span className="hidden sm:block font-semibold tracking-tight">
                   {link.name}
                 </span>
                 <link.Icon
                   className={clsx(
-                    "block sm:hidden h-5 w-5 transition-transform duration-200",
+                    "block sm:hidden h-[1.2rem] w-[1.2rem] transition-transform duration-200",
                     activeSection === link.name
-                      ? "scale-110"
+                      ? "scale-110 text-black dark:text-white"
                       : "scale-100"
                   )}
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                 />
               </Link>
             </motion.li>

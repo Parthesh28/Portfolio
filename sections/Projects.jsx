@@ -97,25 +97,23 @@ const ProjectCard = ({ project, index }) => (
                 href={project.codebaseLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
-                relative overflow-hidden
-                bg-zinc-300 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100
-                shadow-sm hover:shadow-md font-medium
-                transition-all duration-300
-                group/btn"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl 
+                bg-gradient-to-br from-zinc-300 to-zinc-400 dark:from-zinc-700 dark:to-zinc-600
+                text-zinc-900 dark:text-zinc-100 font-medium
+                shadow-md hover:shadow-lg hover:scale-[1.02]
+                transition-all duration-300 overflow-hidden relative
+                before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-l 
+                before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%]
+                hover:before:translate-x-[200%] before:transition-transform before:duration-1000"
               >
-                <div className="absolute inset-0 bg-zinc-400/80 dark:bg-zinc-700
-                  transform translate-x-[-100%] group-hover/btn:translate-x-0
-                  transition-transform duration-300 ease-out"
-                />
-                <Code className="h-4 w-4 relative z-10" />
-                <span className="relative z-10">Code</span>
+                <Code className="h-4 w-4 relative" strokeWidth={2.5} />
+                <span className="relative">Code</span>
               </a>
             ) : (
-              <span className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
-                bg-zinc-400/80 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-500
-                cursor-not-allowed font-medium">
-                <EyeOff className="h-4 w-4" />
+              <span className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl 
+                bg-zinc-200/80 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-500
+                cursor-not-allowed font-medium backdrop-blur-sm">
+                <EyeOff className="h-4 w-4" strokeWidth={2.5} />
                 <span>Private</span>
               </span>
             )}
@@ -125,25 +123,22 @@ const ProjectCard = ({ project, index }) => (
                 href={project.previewLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
-                relative overflow-hidden
-                bg-zinc-400 dark:bg-zinc-700
-                shadow-sm hover:shadow-md font-medium
-                transition-all duration-300
-                group/btn"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl 
+                bg-gradient-to-br from-primary/80 to-primary/100 text-primary-foreground font-medium
+                shadow-md hover:shadow-lg hover:scale-[1.02]
+                transition-all duration-300 overflow-hidden relative
+                before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-l 
+                before:from-transparent before:via-white/30 before:to-transparent before:translate-x-[-200%]
+                hover:before:translate-x-[200%] before:transition-transform before:duration-1000"
               >
-                <div className="absolute inset-0 bg-zinc-500/50 dark:bg-zinc-600/80
-                  transform translate-x-[-100%] group-hover/btn:translate-x-0
-                  transition-transform duration-300 ease-out"
-                />
-                <Eye className="h-4 w-4 relative z-10" />
-                <span className="relative z-10">Demo</span>
+                <Eye className="h-4 w-4 relative" strokeWidth={2.5} />
+                <span className="relative">Demo</span>
               </a>
             ) : (
-              <span className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
+              <span className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl 
                 bg-zinc-200/50 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-500
-                cursor-not-allowed font-medium">
-                <Link2Off className="h-4 w-4" />
+                cursor-not-allowed font-medium backdrop-blur-sm">
+                <Link2Off className="h-4 w-4" strokeWidth={2.5} />
                 <span>Unhosted</span>
               </span>
             )}
@@ -208,9 +203,9 @@ export default function Projects() {
           {projects.map((_, i) => (
             <button
               key={i}
-              className={`w-[0.45rem] h-[0.45rem] -mx-1 rounded-full transition-all ${i === current
-                  ? 'bg-zinc-900 dark:bg-zinc-100'
-                  : 'bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400 dark:hover:bg-zinc-600'
+              className={`w-2 h-2 rounded-full transition-all duration-300 shadow-sm ${i === current
+                ? 'bg-primary scale-125'
+                : 'bg-zinc-300/70 dark:bg-zinc-700/70 hover:bg-zinc-400 dark:hover:bg-zinc-600 hover:scale-110'
                 }`}
               onClick={() => api?.scrollTo(i)}
               aria-label={`Go to slide ${i + 1}`}

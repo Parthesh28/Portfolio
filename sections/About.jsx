@@ -52,17 +52,18 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl text-center mb-12"
+    <section id="about" className="py-24 relative" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          About Me
-        </motion.h2>
+          <h2 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">About Me</h2>
+          <div className="h-px w-20 bg-zinc-300 dark:bg-zinc-700 mx-auto"></div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           <motion.div
@@ -86,7 +87,7 @@ export default function About() {
         </div>
       </div>
       <motion.div
-        className="mt-10"
+        className="mt-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}

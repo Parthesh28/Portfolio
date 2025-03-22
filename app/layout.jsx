@@ -1,13 +1,18 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import Navbar from '../components/Navbar'
 import ThemeToggle from '../components/ThemeToggle'
 import Footer from '../components/Footer'
 import ActiveSectionContextProvider from '../context/active-section-context'
 import { ThemeProvider } from '../context/theme-provider'
 import Starfield from '../components/Starfield'
-const inter = Inter({ subsets: ['latin'] })
 
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
+})
 
 export const metadata = {
   title: 'Parthesh Purohit',
@@ -16,16 +21,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
-
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <html lang="en" className={`scroll-smooth ${jakarta.variable}`}>
+      <body className={`flex flex-col min-h-screen font-sans bg-white dark:bg-zinc-900`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ActiveSectionContextProvider>
             <Navbar />
             <div className='-z-50'>
               <Starfield />
             </div>
-            <main>{children}</main>
+            <main className="flex-grow">{children}</main>
             <Footer />
             <ThemeToggle />
           </ActiveSectionContextProvider>

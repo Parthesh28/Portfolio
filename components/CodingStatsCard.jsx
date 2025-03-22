@@ -86,8 +86,8 @@ export default function CodingStatsCard({ data }) {
                         <span className="flex items-center ml-2">
                             <span
                                 className={`w-2 h-2 rounded-full mr-2 ${discordStatus === 'online' ? 'bg-green-500' :
-                                        discordStatus === 'idle' ? 'bg-yellow-500' :
-                                            'bg-red-500'
+                                    discordStatus === 'idle' ? 'bg-yellow-500' :
+                                        'bg-red-500'
                                     }`}
                             />
                             {discordStatus.charAt(0).toUpperCase() + discordStatus.slice(1)}
@@ -118,7 +118,7 @@ export default function CodingStatsCard({ data }) {
                                     tickFormatter={(value) => `${(value / 3600).toFixed(1)}h`}
                                 />
                                 <ChartTooltip content={<CustomTooltip />} />
-                                <Bar dataKey="total_time" fill="hsl(var(--primary)/0.8)" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="total_time" fill="hsl(var(--primary)/1)" radius={[4, 4, 0, 0]} />
                             </BarChart>
                         </ResponsiveContainer>
                     </ChartContainer>

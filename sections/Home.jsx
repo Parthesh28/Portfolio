@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import useSectionInView from '../hooks/useSectionInView'
-import { Download } from 'lucide-react'
+import { Download, Github, Linkedin } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '../app/components/ui/avatar'
 
 const words = ["Parthesh", "Developer", "Engineer"]
@@ -26,24 +26,36 @@ export default function Home() {
       className="min-h-screen relative overflow-hidden"
     >
       <div className="relative flex flex-col items-center justify-center min-h-screen px-4 py-16 space-y-16">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 rounded-full blur-2xl opacity-30 animate-pulse" />
-          <Avatar className="relative h-40 w-40 ring-2 ring-zinc-200 dark:ring-zinc-800 shadow-xl">
-            <AvatarImage
-              src='/assets/Profile_Picture.jpg'
-              alt="Parthesh Purohit"
-              className="object-cover"
-            />
-            <AvatarFallback className="text-4xl font-bold bg-zinc-400 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-              PP
-            </AvatarFallback>
-          </Avatar>
-        </motion.div>
+        <div className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20, rotateZ: -5 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              rotateZ: 0
+            }}
+            transition={{
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            className="relative"
+          >
+            <div className="h-44 w-44 rounded-full p-1 bg-gradient-to-tr from-primary via-primary/40 to-transparent animate-gradient-rotate">
+              <div className="h-full w-full rounded-full p-1 bg-zinc-100 dark:bg-zinc-900">
+                <Avatar className="h-full w-full relative overflow-hidden shadow-lg">
+                  <AvatarImage
+                    src='/assets/Profile_Picture.jpg'
+                    alt="Parthesh Purohit"
+                    className="object-cover scale-110 hover:scale-125 transition-transform duration-700"
+                  />
+                  <AvatarFallback className="text-4xl font-bold bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                    PP
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+            </div>
+          </motion.div>
+        </div>
 
         <div className="text-center space-y-10">
           <div className="h-20 flex items-center justify-center">
@@ -54,7 +66,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
-                className="text-6xl sm:text-7xl font-bold"
+                className="text-6xl sm:text-7xl font-bold text-zinc-900 dark:text-zinc-100"
               >
                 {words[index].split('').map((char, i) => (
                   <motion.span
@@ -75,7 +87,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="text-xl md:text-3xl text-zinc-600 dark:text-zinc-400 font-light tracking-wide"
+            className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 font-light tracking-wide"
           >
             Web Developer | Tech Enthusiast
           </motion.p>
@@ -84,18 +96,29 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
+            className="flex flex-wrap items-center justify-center gap-4"
           >
             <a
               href="/assets/Resume.pdf"
-              className="group relative inline-flex items-center justify-center px-8 py-4 bg-zinc-800 dark:bg-zinc-200 text-zinc-100 dark:text-zinc-900 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-lg hover:shadow-zinc-900/10 dark:hover:shadow-zinc-100/10"
+              className="relative inline-flex items-center justify-center px-7 py-3.5 
+              bg-gradient-to-tr from-zinc-800 to-zinc-700 dark:from-zinc-200 dark:to-zinc-300
+              text-white dark:text-zinc-900 font-medium rounded-xl overflow-hidden 
+              shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300
+              group"
               aria-label="Download Resume"
+              download
             >
-              <div className="absolute inset-0 bg-zinc-700 dark:bg-zinc-300 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
-              <Download className="w-5 h-5 mr-3 relative z-10" />
-              <span className="font-medium relative z-10 tracking-wide">
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r 
+              from-primary/40 via-transparent to-transparent opacity-0 
+              group-hover:opacity-100 group-hover:animate-shimmer 
+              transition-opacity"></span>
+
+              <Download className="w-5 h-5 mr-2.5 transition-transform group-hover:translate-y-[-2px]" />
+              <span className="tracking-wide">
                 Resume
               </span>
             </a>
+
           </motion.div>
         </div>
       </div>
