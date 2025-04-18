@@ -89,7 +89,7 @@ export default function Home() {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 font-light tracking-wide"
           >
-            Web Developer | Tech Enthusiast
+            Android Developer | Blockchain Enthusiast
           </motion.p>
 
           <motion.div

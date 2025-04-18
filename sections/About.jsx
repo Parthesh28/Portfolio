@@ -62,7 +62,7 @@ export default function About() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">About Me</h2>
-          <div className="h-px w-20 bg-zinc-300 dark:bg-zinc-700 mx-auto"></div>
+          <div className="h-1 w-24 bg-primary rounded-full mx-auto mt-6"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">

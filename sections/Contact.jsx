@@ -15,17 +15,17 @@ export default function Contact() {
     {
       icon: Instagram,
       href: 'https://www.instagram.com/parthesh28/',
-      label: '@parthesh28',
+      label: 'Follow me on Instagram',
     },
     {
       icon: Github,
       href: 'https://github.com/Parthesh28',
-      label: 'Parthesh28',
+      label: 'Check my GitHub',
     },
     {
       icon: Linkedin,
       href: 'https://www.linkedin.com/company/partheshpurohit',
-      label: 'partheshpurohit',
+      label: 'Connect on LinkedIn',
     },
     {
       icon: Coffee,
@@ -60,15 +60,16 @@ export default function Contact() {
   return (
     <section id="connect" className="py-24" ref={ref}>
       <div className="max-w-2xl mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-extrabold text-zinc-900 dark:text-zinc-100 text-center mb-12"
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          Let's Connect
-        </motion.h2>
+          <h2 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">Lets Connect</h2>
+          <div className="h-1 w-24 bg-primary rounded-full mx-auto mt-6"></div>
+        </motion.div>
         <motion.div
           initial="hidden"
           whileInView="visible"

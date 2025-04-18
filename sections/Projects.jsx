@@ -164,15 +164,16 @@ export default function Projects() {
   return (
     <section id="projects" ref={ref} className="py-24">
       <div className="max-w-6xl mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-extrabold text-zinc-900 dark:text-zinc-100 text-center mb-12"
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          Projects
-        </motion.h2>
+          <h2 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">My Projects</h2>
+          <div className="h-1 w-24 bg-primary rounded-full mx-auto mt-6"></div>
+        </motion.div>
 
         <Carousel
           opts={{

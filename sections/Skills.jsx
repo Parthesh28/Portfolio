@@ -19,11 +19,11 @@ const educationTimeline = [
 ]
 
 const tools = [
-    "Git", "GitHub", "Expo", "VS Code", "Android Studio",
+    "Git", "Expo", "VS Code", "Android Studio", "Nodejs"
 ]
 
 const skills = [
-    "TypeScript", "React-Native", "Next.js", "Express/Hono",  "Java"
+    "TypeScript", "React-Native", "Next.js", "Hono",  "Java"
 ]
 
 const MotionCard = motion(Card)
@@ -54,14 +54,16 @@ export default function Skills() {
     return (
         <section className="py-24 px-4">
             <div className="max-w-6xl mx-auto">
-                <motion.h2
-                    className="text-3xl font-bold text-center mb-12 text-zinc-900 dark:text-zinc-100"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
                 >
-                    Skills & Education
-                </motion.h2>
+                    <h2 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">Skills & Education</h2>
+                    <div className="h-1 w-24 bg-primary rounded-full mx-auto mt-6"></div>
+                </motion.div>
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     variants={containerVariants}
